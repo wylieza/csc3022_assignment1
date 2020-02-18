@@ -42,7 +42,7 @@ int main(void){
                 break;
 
             case 3:
-                WYLJUS002::disp_student("hi");
+                WYLJUS002::disp_student();
                 break;
 
             case 4:

@@ -58,13 +58,27 @@ namespace WYLJUS002{
         std::cout << "Save the database\n";
     }
 
+    void disp_student(void){
+        std::string student_no;
+
+        std::cout << "\nStudent number: ";
+        std::cin >> student_no;
+
+        disp_student(student_no);
+    }
+
     void disp_student(std::string student_no){
         std::cout << "Display student data\n";
+        bool found = false;
 
         for (int i =0; i < student_records.size(); i++){
             if (student_no.compare(student_records[i].student_no) == 0){
+                found = true;
                 print_student(student_records[i]);
             }
+        }
+        if(!found){
+            std::cout << "\nSorry, No record of student exists\n";
         }
     }
 

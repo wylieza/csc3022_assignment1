@@ -17,6 +17,7 @@ namespace WYLJUS002{
     void add_student(std::string name, std::string surname, std::string student_no, std::string class_record);
     void read_database();
     void save_database();
+    void disp_student();
     void disp_student(std::string student_no);
     void grade_student();
     bool unique_student(student_record record);
