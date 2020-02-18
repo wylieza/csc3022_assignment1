@@ -22,6 +22,7 @@ namespace WYLJUS002{
     void grade_student();
     bool unique_student(student_record record);
     void print_student(student_record record);
+    double calc_grade(std::string cr);
 
 }
 

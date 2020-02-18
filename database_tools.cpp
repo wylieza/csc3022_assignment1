@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include<sstream>
 #include "database_tools.h"
 
 namespace WYLJUS002{
@@ -83,7 +84,22 @@ namespace WYLJUS002{
     }
 
     void grade_student(){
-        std::cout << "Grade a student\n";
+        std::cout << "\n>>> Grade a student <<<\n";
+        std::string student_no;
+
+        bool found = false;
+        std::cout << "Student number: ";
+        std::cin >> student_no;
+
+        for (int i =0; i < student_records.size(); i++){
+            if (student_no.compare(student_records[i].student_no) == 0){
+                found = true;
+                std::cout << "Student's grade: " << calc_grade(student_records[i].class_record);
+            }
+        }
+        if(!found){
+            std::cout << "\nSorry, No record of student exists\n";
+        }
     }
 
     bool unique_student(student_record record){
@@ -102,5 +118,26 @@ namespace WYLJUS002{
         std::cout << "Student Number: " << record.student_no << "\n";
         std::cout << "Student's record: " << record.class_record << "\n";
 
+    }
+
+    double calc_grade(std::string cr){
+        std::stringstream str_stream;
+        double average = 0;
+        int itemp_holder;
+        std::string stemp_holder;
+        double count = 0;
+
+        str_stream << cr;
+
+        while(! str_stream.eof()){
+            str_stream >> stemp_holder;
+
+            if(std::stringstream(stemp_holder) >> itemp_holder){
+                count++;
+                average += itemp_holder;
+                std::cout << average;
+            }
+        }
+        return itemp_holder/count;
     }
 }
