@@ -1,7 +1,8 @@
 
 #include <iostream>
+#include <fstream>
 #include <vector>
-#include<sstream>
+#include <sstream>
 #include "database_tools.h"
 
 namespace WYLJUS002{
@@ -56,7 +57,23 @@ namespace WYLJUS002{
     }
 
     void save_database(){
-        std::cout << "Save the database\n";
+        std::cout << "Saving the database...\n";
+
+        std::ofstream database("database.txt");
+
+        if(database.is_open()){
+            for (int i =0; i < student_records.size(); i++){
+                database << student_records[i].name << " ";
+                database << student_records[i].surname << " ";
+                database << student_records[i].student_no << " ";
+                database << student_records[i].class_record << "\n";
+            }
+            database.close();
+        }else{
+            std::cout << "Error occured, could not access database file";
+        }
+        
+
     }
 
     void disp_student(void){
