@@ -1,17 +1,7 @@
-#ifndef DATABASE_H
-#define DATABASE_H
+#ifndef DRIVER_H //This is to ensure that the header not included twice by accident
+#define DRIVER_H 
 
-//Define namespace
-namespace WYLJUS002{
-    void add_student(std::string name, std::string surname, std::string student_no, std::string, std::string class_record);
+#include "database_tools.h"
 
-    //Read
-
-    //Save
-
-    //Display
-
-    //Grade
-}
 
 #endif

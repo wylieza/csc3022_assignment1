@@ -1,9 +1,11 @@
 
-include "database_tools.h"
+#include <iostream>
+#include <vector>
+#include "database_tools.h"
 
 namespace WYLJUS002{
 
-    std::vector std::string student_records; //Prehaps define this in the header class?
+    std::vector<student_record> student_records; //Prehaps define this in the header class?
 
     //Functions
     void add_student(){
