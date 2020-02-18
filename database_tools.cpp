@@ -7,7 +7,7 @@
 
 namespace WYLJUS002{
 
-    std::vector<student_record> student_records; //Prehaps define this in the header class?
+    std::vector<student_record> student_records;
     std::vector<std::string> details;
 
     //Functions
@@ -55,14 +55,12 @@ namespace WYLJUS002{
     void read_database(){
         std::cout << "Reading from database...\n";
 
-        //std::vector<std::string> details;
         std::string line;
         int pos;
         int count;
         std::ifstream database("database.txt");
 
         if(database.is_open()){
-            std::cout << "DB OPEN"; //DEBUG
             while(getline(database, line)){
                 while(pos >= 0){
                     if (count++ < 3){
