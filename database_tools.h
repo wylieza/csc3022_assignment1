@@ -20,6 +20,7 @@ namespace WYLJUS002{
     void disp_student(std::string student_no);
     void grade_student();
     bool unique_student(student_record record);
+    void print_student(student_record record);
 
 }
 

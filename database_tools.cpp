@@ -44,9 +44,9 @@ namespace WYLJUS002{
 
         if(unique_student(record)){
             student_records.push_back(record);
-            std::cout << "\nSuccess!\n>>> Student data added succesfully <<<\n";
+            std::cout << "\n>>> Student data added succesfully <<<\n";
         }else{
-            std::cout << "\nFail\n>>> Student already in database! <<<\n";
+            std::cout << "\n>>> Student already in database! <<<\n";
         }
     }
 
@@ -60,6 +60,12 @@ namespace WYLJUS002{
 
     void disp_student(std::string student_no){
         std::cout << "Display student data\n";
+
+        for (int i =0; i < student_records.size(); i++){
+            if (student_no.compare(student_records[i].student_no) == 0){
+                print_student(student_records[i]);
+            }
+        }
     }
 
     void grade_student(){
@@ -73,5 +79,14 @@ namespace WYLJUS002{
             }
         }
         return true;
+    }
+
+    void print_student(student_record record){
+        std::cout << "\n >>> Student Data <<<\n";
+        std::cout << "Name: " << record.name << "\n";
+        std::cout << "Surname: " << record.surname << "\n";
+        std::cout << "Student Number: " << record.student_no << "\n";
+        std::cout << "Student's record: " << record.class_record << "\n";
+
     }
 }
