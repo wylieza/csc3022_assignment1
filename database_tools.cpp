@@ -8,10 +8,10 @@
 namespace WYLJUS002{
 
     std::vector<student_record> student_records; //Prehaps define this in the header class?
+    std::vector<std::string> details;
 
     //Functions
     void add_student(void){
-        std::vector<std::string> details;
         std::string name;
         std::string surname;
         std::string student_no;
@@ -37,7 +37,7 @@ namespace WYLJUS002{
     }
 
     void add_student(std::string name, std::string surname, std::string student_no, std::string class_record){
-        std::cout << "Add student function\n";
+        std::cout << "\n>>> Adding student to database <<<\n";
         student_record record;
         record.name = name;
         record.surname = surname;
@@ -46,18 +46,51 @@ namespace WYLJUS002{
 
         if(unique_student(record)){
             student_records.push_back(record);
-            std::cout << "\n>>> Student data added succesfully <<<\n";
+            std::cout << "Student data added succesfully\n";
         }else{
-            std::cout << "\n>>> Student already in database! <<<\n";
+            std::cout << "WARN: Student already in database!\n";
         }
     }
 
     void read_database(){
-        std::cout << "Read from database\n";
+        std::cout << "Reading from database...\n";
+
+        //std::vector<std::string> details;
+        std::string line;
+        int pos;
+        int count;
+        std::ifstream database("database.txt");
+
+        if(database.is_open()){
+            std::cout << "DB OPEN"; //DEBUG
+            while(getline(database, line)){
+                while(pos >= 0){
+                    if (count++ < 3){
+                        pos = line.find(" ");
+                        details.push_back(line.substr(0, pos));
+                        line.erase(0, pos+1);
+                    }else{
+                        details.push_back(line);
+                        pos = -1;
+                    }
+                }
+                add_student(details[0], details[1], details[2], details[3]);
+                details.clear();
+                pos = 0;
+                count = 0;
+            }
+            database.close();
+            std::cout << "\nReading success!...\n";
+        }else{
+            std::cout << "Error occured, could not access database file";
+        }
+
+
     }
 
     void save_database(){
-        std::cout << "Saving the database...\n";
+        read_database();
+        std::cout << "\nWriting to the database file...\n";
 
         std::ofstream database("database.txt");
 
@@ -69,6 +102,7 @@ namespace WYLJUS002{
                 database << student_records[i].class_record << "\n";
             }
             database.close();
+            std::cout << "\nSaving success!...\n";
         }else{
             std::cout << "Error occured, could not access database file";
         }
@@ -111,7 +145,7 @@ namespace WYLJUS002{
         for (int i =0; i < student_records.size(); i++){
             if (student_no.compare(student_records[i].student_no) == 0){
                 found = true;
-                std::cout << "Student's grade: " << calc_grade(student_records[i].class_record);
+                std::cout << "Student's grade: " << calc_grade(student_records[i].class_record) << "\n";
             }
         }
         if(!found){
@@ -152,9 +186,8 @@ namespace WYLJUS002{
             if(std::stringstream(stemp_holder) >> itemp_holder){
                 count++;
                 average += itemp_holder;
-                std::cout << average;
             }
         }
-        return itemp_holder/count;
+        return average/count;
     }
 }
