@@ -13,11 +13,13 @@ namespace WYLJUS002{
         };
 
     //Define functions
-    void add_student(); // void add_student(std::string name, std::string surname, std::string student_no, std::string, std::string class_record);
+    void add_student(void);
+    void add_student(std::string name, std::string surname, std::string student_no, std::string class_record);
     void read_database();
     void save_database();
-    void disp_student();
+    void disp_student(std::string student_no);
     void grade_student();
+    bool unique_student(student_record record);
 
 }
 
